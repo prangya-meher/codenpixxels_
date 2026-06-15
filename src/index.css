@@ -18,11 +18,17 @@
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  /* font-family:Manrope; */
   background-color: var(--bg-color);
   color: var(--text-color);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+h1{
+  font-family:Montserrat;
+}
+p{
+  font-family:Inter;
 }
 
 a {

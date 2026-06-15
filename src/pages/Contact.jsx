@@ -14,7 +14,7 @@ import './Contact.css';
   │  4. Paste it below replacing  YOUR_WEB3FORMS_ACCESS_KEY      │
   └──────────────────────────────────────────────────────────────┘
 */
-const WEB3FORMS_ACCESS_KEY = '698598e7-4b97-4352-9b00-4b38c08c1b8b';
+const WEB3FORMS_ACCESS_KEY = 'bfbb1c5c-3295-4e29-81d4-cdd2ac5ebd3c';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -99,8 +99,8 @@ const Contact = () => {
                         <div className="contact-info">
                             <div className="info-item">
                                 <Mail className="info-icon" />
-                                <a href="mailto:meherprangya@gmail.com" className="info-link">
-                                    meherprangya@gmail.com
+                                <a href="mailto:contact.codenpixels@gmail.com" className="info-link">
+                                    contact.codenpixels@gmail.com
                                 </a>
                             </div>
                             <div className="info-item">
@@ -109,7 +109,7 @@ const Contact = () => {
                             </div>
                             <div className="info-item">
                                 <Phone className="info-icon" />
-                                <a href="tel:+918117862163" className="info-link">+91 8117862163</a>
+                                <a href="tel:+917008404037" className="info-link">+91 7008404037</a>
                             </div>
                             <div className="contact-socials">
                                 <a
