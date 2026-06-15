@@ -1,0 +1,272 @@
+/* ═══════════════════════════════════════════════════════════
+   DESKTOP  –  vertical sidebar (hidden on ≤768 px)
+═══════════════════════════════════════════════════════════ */
+.side-navbar {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000;
+}
+
+.nav-capsule {
+    background: rgba(14, 11, 25, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(147, 51, 234, 0.25);
+    border-radius: 50px;
+    padding: 1.4rem 0.7rem;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        inset 0 0 12px rgba(147, 51, 234, 0.08);
+    transition: box-shadow 0.4s ease;
+}
+
+.nav-capsule:hover {
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.55),
+        inset 0 0 20px rgba(147, 51, 234, 0.14);
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+}
+
+/* icon motion wrapper */
+.icon-wrapper {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-icon {
+    position: relative;
+    z-index: 2;
+    color: #6b6b8a;
+    transition: color 0.3s ease;
+    display: flex;
+}
+
+.nav-icon.icon-active {
+    color: #ffffff;
+}
+
+.nav-icon-link:hover .nav-icon {
+    color: #d4b8ff;
+}
+
+/* Active pill */
+.active-indicator {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9333ea 0%, #581c87 100%);
+    box-shadow:
+        0 0 18px rgba(147, 51, 234, 0.9),
+        0 0 40px rgba(147, 51, 234, 0.45);
+    z-index: 1;
+}
+
+/* Tooltip */
+.nav-tooltip {
+    position: absolute;
+    left: calc(100% + 14px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    background: rgba(12, 8, 24, 0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 51, 234, 0.35);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.nav-tooltip::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: rgba(12, 8, 24, 0.92);
+}
+
+.nav-item:hover .nav-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE  –  top bar + hamburger + slide-in drawer
+   (visible only on ≤768 px; sidebar hidden)
+═══════════════════════════════════════════════════════════ */
+.mobile-navbar {
+    display: none;
+    /* hidden on desktop */
+}
+
+@media (max-width: 768px) {
+
+    /* Hide the desktop sidebar */
+    .side-navbar {
+        display: none;
+    }
+
+    /* Show mobile navbar */
+    .mobile-navbar {
+        display: block;
+    }
+
+    /* Top bar */
+    .mobile-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: rgba(14, 11, 25, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+        z-index: 2000;
+    }
+
+    .mobile-logo {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: var(--text-color);
+    }
+
+    /* Hamburger button */
+    .hamburger-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: rgba(147, 51, 234, 0.1);
+        border: 1px solid rgba(147, 51, 234, 0.3);
+        transition: background 0.2s ease;
+    }
+
+    .hamburger-btn:hover {
+        background: rgba(147, 51, 234, 0.25);
+    }
+
+    /* Backdrop */
+    .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(3px);
+        z-index: 2001;
+    }
+
+    /* Drawer panel */
+    .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(75vw, 300px);
+        height: 100dvh;
+        background: rgba(14, 11, 25, 0.96);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-left: 1px solid rgba(147, 51, 234, 0.25);
+        padding: 90px 28px 40px;
+        z-index: 2002;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .drawer-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .drawer-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+        border-radius: 14px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #9ca3af;
+        text-decoration: none;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .drawer-link:hover {
+        background: rgba(147, 51, 234, 0.15);
+        color: #fff;
+    }
+
+    .drawer-link.active {
+        background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(88, 28, 135, 0.3));
+        color: #fff;
+        border: 1px solid rgba(147, 51, 234, 0.4);
+    }
+
+    .drawer-icon {
+        display: flex;
+        color: inherit;
+    }
+
+    /* push page content below top bar */
+    .home-section,
+    .about-section,
+    .projects-section,
+    .contact-section,
+    .services-section {
+        padding-top: 80px !important;
+    }
+}
