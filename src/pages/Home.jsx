@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Download, Sparkles, X } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Github, Linkedin, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
     const text = "Portfolio";
-    const [showPortfolioPopup, setShowPortfolioPopup] = useState(false);
 
     // Framer motion variants for typography
     const containerVariants = {
@@ -100,43 +99,6 @@ const Home = () => {
                     </motion.div>
 
                 </motion.div>
-            </div>
-
-            <div className="portfolio-popover-wrap">
-                <motion.button
-                    type="button"
-                    className="portfolio-popover-button"
-                    onClick={() => setShowPortfolioPopup((open) => !open)}
-                    whileHover={{ scale: 1.08 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label="Open portfolio popup"
-                    aria-expanded={showPortfolioPopup}
-                >
-                    {showPortfolioPopup ? <X size={20} /> : <Sparkles size={20} />}
-                </motion.button>
-
-                <AnimatePresence>
-                    {showPortfolioPopup && (
-                        <motion.div
-                            className="portfolio-popover"
-                            initial={{ opacity: 0, y: 12, scale: 0.96 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 12, scale: 0.96 }}
-                            transition={{ duration: 0.2 }}
-                        >
-                            <span className="portfolio-popover-label">Portfolio</span>
-                            <p>Quick access to my work, services, and contact details.</p>
-                            <div className="portfolio-popover-actions">
-                                <Link to="/projects" onClick={() => setShowPortfolioPopup(false)}>
-                                    View Projects
-                                </Link>
-                                <Link to="/contact" onClick={() => setShowPortfolioPopup(false)}>
-                                    Contact Me
-                                </Link>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
 
             {/* Minimal background blobs just for home */}
